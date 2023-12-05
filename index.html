@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- driver.js css file -->
+    <link rel="stylesheet" href="https://unpkg.com/driver.js/dist/driver.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <title>NumberToWords Converter - With Driver.js | Javascript</title>
+  </head>
+  <body>
+    <!-- so in this video i will show you how you can make a website tour using driver js so i am taking this project as example its already on my channel too :) -->
+    <div class="wrapper">
+      <div id="converter-container" class="converter">
+        <header>Number To Words Converter</header>
+        <!-- adding required is not necessary but it will be better to put :) -->
+        <input id="putNumber" type="text" class="inputBox" placeholder="Type any number..." required>
+        <button id="btn" class="convertBtn">Convert</button>
+      </div>
+      <div class="output" id="outPut">
+        <p>Result: <span class="result"></span></p>
+      </div>
+    </div>
+    <div class="emptyBox">Please Provide a number to convert</div>
+    <!-- now javascript lets go :) -->
+    <!-- driver.js js file -->
+    <script src="https://unpkg.com/driver.js/dist/driver.min.js"></script>
+    <!-- also remember to load driver.js javascript file first and then code your javascript :) -->
+    <script src="numtoword.min.js"></script>
+    <script>
+      //getting all required elements
+      let inputBox = document.querySelector('.inputBox');
+      let convertBtn = document.querySelector('.convertBtn');
+      let result = document.querySelector('.result');
+      let emptyBox = document.querySelector('.emptyBox');
+
+      convertBtn.addEventListener('click', () => {
+        // main code
+        if (inputBox.value === '') {
+          // what we say is easy that when it is empty just add active class to emptyBox
+          emptyBox.classList.add('active');
+        } else {
+          // if it is not empty then remove it :)
+          emptyBox.classList.remove('active');
+        }
+        // then converter code
+        // hope i didnt did any error XD
+        result.innerText = numberToWords.toWords(inputBox.value);
+      });
+      // == Driver.js Code is here == //
+      const driver = new Driver();
+
+      // Define the steps for introduction
+      driver.defineSteps([
+        {
+          element: '#converter-container',
+          popover: {
+            className: 'converter-container',
+            title: 'Convert Number To Word',
+            description: 'This is the container which is the converter',
+            position: 'left'
+          }
+        },
+        {
+          // element is the thing which you want to highlight and describe and etc...
+          element: '#putNumber',
+          popover: {
+            className: 'putNumber',
+            title: 'Write Number Here',
+            description: 'Write any number here to convert',
+            // you can change the dialog box postition
+            position: 'right'
+          }
+        },
+        {
+          // element is the thing which you want to highlight and describe and etc...
+          element: '#btn',
+          popover: {
+            className: 'btn',
+            title: 'Click to convert',
+            description: 'click on this button to see the magic.. 🌟',
+            // you can change the dialog box postition
+            position: 'right'
+          }
+        },
+        {
+          // element is the thing which you want to highlight and describe and etc...
+          element: '#outPut',
+          popover: {
+            className: 'outPut',
+            title: 'Result Comes Here',
+            description: 'after clicking on the button you will see the result here',
+            // you can change the dialog box postition
+            position: 'top'
+          }
+        }
+      ]);
+
+      // Start the introduction
+      driver.start();
+
+    </script>
+
+  </body>
+</html>*
